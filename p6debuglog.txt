@@ -1,0 +1,91 @@
+ gcc -g p6original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8df: file p6original.c, line 32.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p6original.c:32
+32  {
+(gdb) n
+34    input_two_string(a,b);
+(gdb) s
+input_two_string (a=0x7ffcf50bf5e0 "\001", b=0x7ffcf50bf600 "P\t\200y\335U")
+    at p6original.c:5
+5     printf("Enter a string:\n");
+(gdb) n
+Enter a string:
+6     scanf("%s",a);
+(gdb) n
+android
+7     printf("Enter another string:\n");
+(gdb) n
+Enter another string:
+8     scanf("%s",b);
+(gdb) n
+iphone
+9   }
+(gdb) n
+main () at p6original.c:35
+35    int result=strcmp(a,b);
+(gdb) s
+strcmp (a=0x7ffcf50bf5e0 "android", b=0x7ffcf50bf600 "iphone")
+    at p6original.c:12
+12    int result=0,i=0;
+(gdb) n
+13    while(a[i]!='\0' && b[i]!='\0')
+(gdb) n
+15      result=a[i]-b[i];
+(gdb) n
+16      if(result!=0)
+(gdb) p result
+$1 = -8
+(gdb) n
+17        break;
+(gdb) n
+20    return result;
+(gdb) n
+21  }
+(gdb) n
+main () at p6original.c:36
+36    output(a,b,result);
+(gdb) s
+output (a=0x7ffcf50bf5e0 "android", b=0x7ffcf50bf600 "iphone", result=-8)
+    at p6original.c:24
+24    if(result==0)
+(gdb) n
+26    else if(result>0)
+(gdb) n
+29    printf("%s is greater than %s",b,a);
+(gdb) n
+30  }
+(gdb) n
+main () at p6original.c:37
+37    return 0;
+(gdb) p a
+$2 = "android\000\235\t\200y\335U\000\000@\373\035_"
+(gdb) p b
+$3 = "iphone\000\000\200\006\200y\335U\000\000\000\367", <incomplete sequence \365>
+(gdb) p result
+$4 = -8
+(gdb) n
+38  }(gdb) c
+Continuing.
+iphone is greater than android[Inferior 1 (process 166) exited normally]
+(gdb) quit
