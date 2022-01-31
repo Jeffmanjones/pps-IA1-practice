@@ -20,7 +20,7 @@ complex add(complex a, complex b)
 }
 void output(complex a,complex b, complex c)
 {
-  printf("%.1f + %.1fi + %.1f + %.1fi is %.1f + %.1fi",a.real,a.imaginary, b.real, b.imaginary,c.real, c.imaginary);
+  printf("%.1f + %.1fi + %.1f + %.1fi is %.1f + %.1fi\n",a.real,a.imaginary, b.real, b.imaginary,c.real, c.imaginary);
 }
 int main()
 {
