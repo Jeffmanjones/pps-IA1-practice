@@ -1,0 +1,112 @@
+ gcc -g p2original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x833: file p2original.c, line 29.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p2original.c:29
+29    a=input();
+(gdb) s
+input () at p2original.c:4
+4   {
+(gdb) n
+6     printf("Enter a number:\n");
+(gdb) n
+Enter a number:
+7     scanf("%d",&a);
+(gdb) n
+1
+8     return a;
+(gdb) n
+9   }
+(gdb) n
+main () at p2original.c:30
+30    b=input();
+(gdb) s
+input () at p2original.c:4
+4   {
+(gdb) n
+6     printf("Enter a number:\n");
+(gdb) n
+Enter a number:
+7     scanf("%d",&a);
+(gdb) n
+9
+8     return a;
+(gdb) n
+9   }
+(gdb) n
+main () at p2original.c:31
+31    c=input();
+(gdb) s
+input () at p2original.c:4
+4   {
+(gdb) n
+6     printf("Enter a number:\n");
+(gdb) n
+Enter a number:
+7     scanf("%d",&a);
+(gdb) n
+5
+8     return a;
+(gdb) n
+9   }
+(gdb) n
+main () at p2original.c:32
+32    large=cmp(a,b,c);
+(gdb) s
+cmp (a=1, b=9, c=5) at p2original.c:13
+13    int large=a;
+(gdb) n
+14    if(large<b)
+(gdb) n
+15      large=b;
+(gdb) n
+16    if(large<c)
+(gdb) n
+18    return large;
+(gdb) p large
+$1 = 9
+(gdb) n
+19  }
+(gdb) n
+main () at p2original.c:33
+33    output(a,b,c,large);
+(gdb) s
+output (a=1, b=9, c=5, large=9) at p2original.c:23
+23    printf("the largest of %d,%d and %d is %d",a,b,c,large);
+(gdb) n
+24  }
+(gdb) n
+main () at p2original.c:34
+34    return 0;
+(gdb) p a
+$2 = 1
+(gdb) p c
+$3 = 5
+(gdb) p b
+$4 = 9
+(gdb) p large
+$5 = 9
+(gdb) n
+35  }(gdb) c
+Continuing.
+the largest of 1,9 and 5 is 9[Inferior 1 (process 393) exited normally]
+(gdb) quit
