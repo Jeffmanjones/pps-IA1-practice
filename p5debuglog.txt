@@ -1,0 +1,110 @@
+ gcc -g p5original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x858: file p5original.c, line 27.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p5original.c:27
+27    float n=input();
+(gdb) a
+Ambiguous command "a": actions, add-auto-load-safe-path, add-auto-load-scripts-directory, add-inferior...
+(gdb) s
+input () at p5original.c:4
+4   {
+(gdb) n
+6     printf("Enter a number to find square root of:\n");
+(gdb) n
+Enter a number to find square root of:
+7     scanf("%f",&n);
+(gdb) n
+4
+8     return n;
+(gdb) n
+9   }
+(gdb) n
+main () at p5original.c:28
+28    float sqrt_result=my_sqrt(n);
+(gdb) s
+my_sqrt (n=4) at p5original.c:12
+12    float sqrt=n;
+(gdb) n
+13    float temp=0;
+(gdb) n
+14    while(temp!=sqrt)
+(gdb) n
+16      temp=sqrt;
+(gdb) n
+17      sqrt=(n/temp +temp)/2;
+(gdb) n
+14    while(temp!=sqrt)
+(gdb) p sqrt
+$1 = 2.5
+(gdb) n
+16      temp=sqrt;
+(gdb) n
+17      sqrt=(n/temp +temp)/2;
+(gdb) n
+14    while(temp!=sqrt)
+(gdb) p sqrt
+$2 = 2.04999995
+(gdb) n
+16      temp=sqrt;
+(gdb) n
+17      sqrt=(n/temp +temp)/2;
+(gdb) n
+14    while(temp!=sqrt)
+(gdb) p sqrt
+$3 = 2.00060987
+(gdb) n
+16      temp=sqrt;
+(gdb) n
+17      sqrt=(n/temp +temp)/2;
+(gdb) n
+14    while(temp!=sqrt)
+(gdb) n
+16      temp=sqrt;
+(gdb) n
+17      sqrt=(n/temp +temp)/2;
+(gdb) n
+14    while(temp!=sqrt)
+(gdb) n
+19    return sqrt;
+(gdb) n
+20  }
+(gdb) n
+main () at p5original.c:29
+29    output(n,sqrt_result);
+(gdb) s
+output (n=4, sqrt_result=2) at p5original.c:23
+23    printf("%f",sqrt_result);
+(gdb) n
+24  }
+(gdb) n
+main () at p5original.c:30
+30    return 0;
+(gdb) p n
+$4 = 4
+(gdb) p sqrt_result
+$5 = 2
+(gdb) n
+31  }(gdb) c
+Continuing.
+2.000000[Inferior 1 (process 278) exited normally]
+(gdb) quit
